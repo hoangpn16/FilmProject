@@ -45,6 +45,9 @@ public class MoviesService implements MoviesInterface {
                 if (item.startsWith("Name:")) {
                     model.setName(item.replace("Name:", ""));
                 }
+                if (item.startsWith("Avatar:")) {
+                    model.setName(item.replace("Avatar:", ""));
+                }
                 if (item.startsWith("Status:")) {
                     model.setStatus(item.replace("Status:", ""));
                 }
@@ -65,6 +68,9 @@ public class MoviesService implements MoviesInterface {
                 }
                 if (item.startsWith("YearIssue:")) {
                     model.setYearissue(item.replace("YearIssue:", ""));
+                }
+                if (item.startsWith("Content:")) {
+                    model.setName(item.replace("Content:", ""));
                 }
             }
             if (model.getYearissue().equals(YearIssue)) {
@@ -93,6 +99,9 @@ public class MoviesService implements MoviesInterface {
                 if (item.startsWith("Name:")) {
                     model.setName(item.replace("Name:", ""));
                 }
+                if (item.startsWith("Avatar:")) {
+                    model.setName(item.replace("Avatar:", ""));
+                }
                 if (item.startsWith("Status:")) {
                     model.setStatus(item.replace("Status:", ""));
                 }
@@ -113,6 +122,9 @@ public class MoviesService implements MoviesInterface {
                 }
                 if (item.startsWith("YearIssue:")) {
                     model.setYearissue(item.replace("YearIssue:", ""));
+                }
+                if (item.startsWith("Content:")) {
+                    model.setName(item.replace("Content:", ""));
                 }
             }
             if (model.getName().equals(Name)) {
@@ -135,36 +147,8 @@ public class MoviesService implements MoviesInterface {
             if (line == null) {
                 break;
             }
-            MotPhimModel model = new MotPhimModel();
-            String[] items = line.split(";");
-            for (String item : items) {
-                if (item.startsWith("Name:")) {
-                    model.setName(item.replace("Name:", ""));
-                }
-                if (item.startsWith("Status:")) {
-                    model.setStatus(item.replace("Status:", ""));
-                }
-                if (item.startsWith("Director:")) {
-                    model.setDirector(item.replace("Director:", ""));
-                }
-                if (item.startsWith("Type:")) {
-                    model.setType(item.replace("Type:", ""));
-                }
-                if (item.startsWith("Total Episodes:")) {
-                    model.setTotalepisodes(item.replace("Total Episodes:", ""));
-                }
-                if (item.startsWith("Cast:")) {
-                    model.setCast(item.replace("Cast:", ""));
-                }
-                if (item.startsWith("Country:")) {
-                    model.setCountry(item.replace("Country:", ""));
-                }
-                if (item.startsWith("YearIssue:")) {
-                    model.setYearissue(item.replace("YearIssue:", ""));
-                }
-            }
-            if (model.getType().equals(Type)) {
-                response.add(model);
+            if(line.contains(Type)){
+                System.out.println(line);
             }
         }
         return response;
@@ -183,36 +167,8 @@ public class MoviesService implements MoviesInterface {
             if (line == null) {
                 break;
             }
-            MotPhimModel model = new MotPhimModel();
-            String[] items = line.split(";");
-            for (String item : items) {
-                if (item.startsWith("Name:")) {
-                    model.setName(item.replace("Name:", ""));
-                }
-                if (item.startsWith("Status:")) {
-                    model.setStatus(item.replace("Status:", ""));
-                }
-                if (item.startsWith("Director:")) {
-                    model.setDirector(item.replace("Director:", ""));
-                }
-                if (item.startsWith("Type:")) {
-                    model.setType(item.replace("Type:", ""));
-                }
-                if (item.startsWith("Total Episodes:")) {
-                    model.setTotalepisodes(item.replace("Total Episodes:", ""));
-                }
-                if (item.startsWith("Cast:")) {
-                    model.setCast(item.replace("Cast:", ""));
-                }
-                if (item.startsWith("Country:")) {
-                    model.setCountry(item.replace("Country:", ""));
-                }
-                if (item.startsWith("YearIssue:")) {
-                    model.setYearissue(item.replace("YearIssue:", ""));
-                }
-            }
-            if (model.getDirector().equals(Director)) {
-                response.add(model);
+            if(line.contains(Director)){
+                System.out.println(line);
             }
         }
         return response;
@@ -231,36 +187,8 @@ public class MoviesService implements MoviesInterface {
             if (line == null) {
                 break;
             }
-            MotPhimModel model = new MotPhimModel();
-            String[] items = line.split(";");
-            for (String item : items) {
-                if (item.startsWith("Name:")) {
-                    model.setName(item.replace("Name:", ""));
-                }
-                if (item.startsWith("Status:")) {
-                    model.setStatus(item.replace("Status:", ""));
-                }
-                if (item.startsWith("Director:")) {
-                    model.setDirector(item.replace("Director:", ""));
-                }
-                if (item.startsWith("Type:")) {
-                    model.setType(item.replace("Type:", ""));
-                }
-                if (item.startsWith("Total Episodes:")) {
-                    model.setTotalepisodes(item.replace("Total Episodes:", ""));
-                }
-                if (item.startsWith("Cast:")) {
-                    model.setCast(item.replace("Cast:", ""));
-                }
-                if (item.startsWith("Country:")) {
-                    model.setCountry(item.replace("Country:", ""));
-                }
-                if (item.startsWith("YearIssue:")) {
-                    model.setYearissue(item.replace("YearIssue:", ""));
-                }
-            }
-            if (model.getCast().equals(Cast)) {
-                response.add(model);
+            if(line.contains(Cast)){
+                System.out.println(line);
             }
         }
         return response;

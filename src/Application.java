@@ -22,16 +22,16 @@ public class Application {
         Scanner sc= new Scanner(System.in);
         while(true){
             System.out.println("---------------------------MENU-------------------------------------------------------");
-            System.out.println("Enter 1:Search by YearIssue");
-            System.out.println("Enter 2:Search by Name");
-            System.out.println("Enter 3:Search by Type");
-            System.out.println("Enter 4:Search by Director");
-            System.out.println("Enter 5:Search by Cast");
+            System.out.println("Enter 1:Search film by YearIssue");
+            System.out.println("Enter 2:Search film by Name");
+            System.out.println("Enter 3:Search film by Type");
+            System.out.println("Enter 4:Search film by Director");
+            System.out.println("Enter 5:Search film by Cast");
             System.out.println("Enter 6:Exit");
             String choose=sc.nextLine();
             switch (choose){
                 case "1":
-                    System.out.println("Nhap vao YearIssue:");
+                    System.out.println("Enter the YearIssue:");
                     String yearissue = sc.nextLine();
                     result=moviesService.findByYearIssue(yearissue);
                     for(MotPhimModel model: result){
@@ -39,7 +39,7 @@ public class Application {
                     }
                     break;
                 case "2":
-                    System.out.println("Nhap vao Name:");
+                    System.out.println("Enter the Name:");
                     String name=sc.nextLine();
                     result =moviesService.findByName(name);
                     for (MotPhimModel model: result){
@@ -47,7 +47,7 @@ public class Application {
                     }
                     break;
                 case "3":
-                    System.out.println("Nhap vao Type:");
+                    System.out.println("Enter the Type:");
                     String type=sc.nextLine();
                     result=moviesService.findByType(type);
                     for(MotPhimModel model:result){
@@ -55,7 +55,7 @@ public class Application {
                     }
                     break;
                 case "4":
-                    System.out.println("Nhap vao Director");
+                    System.out.println("Enter the Director");
                     String director = sc.nextLine();
                     result=moviesService.findByDirector(director);
                     for(MotPhimModel model:result){
@@ -63,7 +63,7 @@ public class Application {
                     }
                     break;
                 case "5":
-                    System.out.println("Nhap vao Cast");
+                    System.out.println("Enter the Cast");
                     String cast = sc.nextLine();
                     result=moviesService.findByCast(cast);
                     for(MotPhimModel model:result){
@@ -71,7 +71,7 @@ public class Application {
                     }
                     break;
                 case "6":
-                    System.out.println("GoodBye");
+                    System.out.println("GoodBye ^_^");
                     return;
                 default:
                     System.out.println("Invalid");
