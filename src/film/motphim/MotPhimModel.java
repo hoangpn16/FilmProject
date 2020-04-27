@@ -1,6 +1,6 @@
-package Film.MotPhim;
+package film.motphim;
 
-import Film.MoviesBase;
+import film.MoviesBase;
 
 public class MotPhimModel extends MoviesBase {
     private String yearissue;
@@ -23,6 +23,7 @@ public class MotPhimModel extends MoviesBase {
                     +"Cast:"+this.getCast()+";"
                     +"Country:"+this.getCountry()+";"
                     +"YearIssue:"+this.getYearissue()+";"
+                    +"Link:"+this.getLink()+";"
                     +"Content:"+this.getContent()+"";
         return phim;
     }

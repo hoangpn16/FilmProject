@@ -1,12 +1,11 @@
-package Film;
+package film;
 
-import Film.MotPhim.MotPhimModel;
+import film.motphim.MotPhimModel;
 
 import java.io.IOException;
 import java.util.List;
 
 public interface MoviesInterface {
-    void writeMoviesToFile(MotPhimModel model) throws IOException;
     List<MotPhimModel>findByYearIssue(String YearIssue) throws IOException;
     List<MotPhimModel>findByName(String Name) throws  IOException;
     List<MotPhimModel>findByType(String Type)throws IOException;

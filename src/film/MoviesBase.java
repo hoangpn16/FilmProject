@@ -1,4 +1,4 @@
-package Film;
+package film;
 
 public class MoviesBase {
     private String name;
@@ -13,6 +13,7 @@ public class MoviesBase {
     private String views;
     private String content;
     private String tags;
+    private String link;
 
     public MoviesBase() {
     }
@@ -128,5 +129,13 @@ public class MoviesBase {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }
