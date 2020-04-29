@@ -1,15 +1,14 @@
 package film.motphim;
 
 import film.MoviesParser;
+import film.MoviesService;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -17,6 +16,7 @@ public class MotPhimParser extends MoviesParser<MotPhimModel>{
     private static List<MotPhimModel>motPhimModels=new ArrayList<>();
     private static List<String> linkArray = new ArrayList<>();
     private static  MotPhimParser motPhimParser=new MotPhimParser();
+    private static MoviesService moviesService=new MoviesService();
     @Override
     public MotPhimModel parserDetail(String url) {
         Document html = getHtmlContent(url);
@@ -79,7 +79,7 @@ public class MotPhimParser extends MoviesParser<MotPhimModel>{
     @Override
     public List<String> parserListLink(String url) {
         //Parser link chua danh sach cac phim de lay duoc link chi tiet moi phim
-        Document html = getHtmlContent(url);
+        Document html =getHtmlContent(url);
         Elements elements = html.select("li.item");
 
         List<String> linkArray = new ArrayList<>();
@@ -90,58 +90,6 @@ public class MotPhimParser extends MoviesParser<MotPhimModel>{
             linkArray.add("http://www.motphim.net/" + linkFilm);
         }
         return linkArray;
-    }
-    public void parserAllMovies() throws ClassNotFoundException{
-        String url = "https://motphim.net/phim-thuyet-minh.html";
-        linkArray = motPhimParser.parserListLink(url);
-        for(String link : linkArray){
-            MotPhimModel motPhimModel = motPhimParser.parserDetail(link);
-
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-            } catch (ClassNotFoundException e) {
-                System.out.println(e);
-                return;
-            }
-
-            java.sql.Connection connection = null;
-            try {
-                connection = DriverManager
-                        .getConnection("jdbc:mysql://127.0.0.1:3306/javacore?characterEncoding=UTF-8&autoReconnect=true&connectTimeout=30000&socketTimeout=30000&serverTimezone=UTC", "root", "phanhoang1602");
-
-                String sql = "insert into javacore.movies (Name,Avatar,Status,Director,Type,Total Episodes,Cast,Country,YearIssue,Link,Content) values(?,?,?,?,?,?,?,?,?,?,?,?)";
-                PreparedStatement preparedStatement = connection.prepareStatement(sql);
-
-                preparedStatement.setString(2,motPhimModel.getName());
-                preparedStatement.setString(3,motPhimModel.getAvatar());
-                preparedStatement.setString(4,motPhimModel.getStatus());
-                preparedStatement.setString(5,motPhimModel.getDirector());
-                preparedStatement.setString(6,motPhimModel.getType());
-                preparedStatement.setString(7,motPhimModel.getTotalepisodes());
-                preparedStatement.setString(8,motPhimModel.getCast());
-                preparedStatement.setString(9,motPhimModel.getCountry());
-                preparedStatement.setString(10,motPhimModel.getYearissue());
-                preparedStatement.setString(11,motPhimModel.getLink());
-                preparedStatement.setString(12,motPhimModel.getContent());
-
-                preparedStatement.executeUpdate();
-
-
-
-            } catch (
-                    SQLException e) {
-                System.out.println(e);
-                return;
-            } finally {
-                try {
-                    if (connection != null)
-                        connection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
     }
     private Document getHtmlContent(String url) {
         Document pageHtml;
@@ -159,4 +107,15 @@ public class MotPhimParser extends MoviesParser<MotPhimModel>{
         }
         return null;
     }
+
+    public void parserAllMovies() throws ClassNotFoundException {
+        String url = "https://motphim.net/phim-thuyet-minh.html";
+        linkArray = motPhimParser.parserListLink(url);
+        for (String link : linkArray) {
+            MotPhimModel motPhimModel = motPhimParser.parserDetail(link);
+            moviesService.writeToDB(motPhimModel);
+
+        }
+    }
+
 }

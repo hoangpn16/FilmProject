@@ -2,13 +2,15 @@ package film;
 
 import film.motphim.MotPhimModel;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface MoviesInterface {
-    List<MotPhimModel>findByYearIssue(String YearIssue) throws IOException;
-    List<MotPhimModel>findByName(String Name) throws  IOException;
-    List<MotPhimModel>findByType(String Type)throws IOException;
-    List<MotPhimModel>findByDirector(String Director)throws IOException;
-    List<MotPhimModel>findByCast(String Cast)throws IOException;
+     void writeToDB(MotPhimModel motPhimModel);
+     void findByName(String name);
+     void findByYearIssue(String year);
+     void findByType(String type);
+     void findByDirector(String director);
+     void findByCast(String cast);
+
+
 }
