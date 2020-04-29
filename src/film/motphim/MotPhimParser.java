@@ -109,12 +109,13 @@ public class MotPhimParser extends MoviesParser<MotPhimModel>{
     }
 
     public void parserAllMovies() throws ClassNotFoundException {
-        String url = "https://motphim.net/phim-thuyet-minh.html";
+        for (int i = 1; i < 3; i++) {
+        String url = "https://motphim.net/phim-thuyet-minh-"+i+".html";
         linkArray = motPhimParser.parserListLink(url);
-        for (String link : linkArray) {
-            MotPhimModel motPhimModel = motPhimParser.parserDetail(link);
-            moviesService.writeToDB(motPhimModel);
-
+            for (String link : linkArray) {
+                 MotPhimModel motPhimModel = motPhimParser.parserDetail(link);
+                 moviesService.writeToDB(motPhimModel);
+             }
         }
     }
 

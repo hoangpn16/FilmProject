@@ -20,7 +20,7 @@ public class MoviesService implements MoviesInterface {
                 connection = DriverManager
                         .getConnection("jdbc:mysql://127.0.0.1:3306/javacore?characterEncoding=UTF-8&autoReconnect=true&connectTimeout=30000&socketTimeout=30000&serverTimezone=UTC", "root", "phanhoang1602");
                 Statement selectStmt = connection.createStatement();
-                ResultSet rs=selectStmt.executeQuery("select *from javacore.movies where Link='"+motPhimModel.getLink()+"'");
+                ResultSet rs=selectStmt.executeQuery("select *from `javacore`.`movies` where `Link`='"+motPhimModel.getLink()+"'");
                 String tmp=null;
                 while(rs.next()){
                     tmp=rs.getString(11);
@@ -31,10 +31,11 @@ public class MoviesService implements MoviesInterface {
                             ",'" + motPhimModel.getDirector() + "','" + motPhimModel.getType() + "','" + motPhimModel.getTotalepisodes() + "'" +
                             ",'" + motPhimModel.getCast() + "','" + motPhimModel.getCountry() + "','" + motPhimModel.getYearissue() + "','" + motPhimModel.getLink() + "','" + motPhimModel.getContent() + "')";
                     selectStmt.execute(sql);
-                    System.out.println("abc");
+                    System.out.println("inserting");
                 }else{
                     selectStmt.execute("update `javacore`.`movies` set `Name`='"+motPhimModel.getName()+"',`Avatar`='"+motPhimModel.getAvatar()+"',`Status`='"+motPhimModel.getStatus()+"',`Total Episodes`='"+motPhimModel.getTotalepisodes()+"' " +
-                            "where Link='"+motPhimModel.getLink()+"'");
+                            "where `Link`='"+motPhimModel.getLink()+"'");
+                    System.out.println("updating");
                 }
 
             } catch (SQLException e) {
@@ -65,7 +66,13 @@ public class MoviesService implements MoviesInterface {
             String sql="select *from `javacore`.`movies` where Name LIKE '%"+name+"%'";
             ResultSet resultSet=selectStmt.executeQuery(sql);
             while(resultSet.next()){
+                System.out.print("Nội dung:");
                 System.out.println(resultSet.getString(12));
+                System.out.print("Diễn viên:");
+                System.out.println(resultSet.getString(8));
+                System.out.print("Số tập:");
+                System.out.println(resultSet.getString(7));
+                System.out.print("Link:");
                 System.out.println(resultSet.getString(11));
             }
 
@@ -97,7 +104,15 @@ public class MoviesService implements MoviesInterface {
             String sql="select *from `javacore`.`movies` where YearIssue LIKE '%"+year+"%'";
             ResultSet resultSet=selectStmt.executeQuery(sql);
             while(resultSet.next()){
+                System.out.print("Phim:");
+                System.out.println(resultSet.getString(2));
+                System.out.print("Nội dung:");
                 System.out.println(resultSet.getString(12));
+                System.out.print("Diễn viên:");
+                System.out.println(resultSet.getString(8));
+                System.out.print("Số tập:");
+                System.out.println(resultSet.getString(7));
+                System.out.print("Link:");
                 System.out.println(resultSet.getString(11));
             }
 
@@ -128,7 +143,15 @@ public class MoviesService implements MoviesInterface {
             String sql="select *from `javacore`.`movies` where Type LIKE '%"+type+"%'";
             ResultSet resultSet=selectStmt.executeQuery(sql);
             while(resultSet.next()){
+                System.out.print("Phim:");
+                System.out.println(resultSet.getString(2));
+                System.out.print("Nội dung:");
                 System.out.println(resultSet.getString(12));
+                System.out.print("Diễn viên:");
+                System.out.println(resultSet.getString(8));
+                System.out.print("Số tập:");
+                System.out.println(resultSet.getString(7));
+                System.out.print("Link:");
                 System.out.println(resultSet.getString(11));
             }
 
@@ -160,7 +183,15 @@ public class MoviesService implements MoviesInterface {
             String sql="select *from `javacore`.`movies` where Director LIKE '%"+director+"%'";
             ResultSet resultSet=selectStmt.executeQuery(sql);
             while(resultSet.next()){
+                System.out.print("Phim:");
+                System.out.println(resultSet.getString(2));
+                System.out.print("Nội dung:");
                 System.out.println(resultSet.getString(12));
+                System.out.print("Diễn viên:");
+                System.out.println(resultSet.getString(8));
+                System.out.println("Số tập:");
+                System.out.println(resultSet.getString(7));
+                System.out.print("Link:");
                 System.out.println(resultSet.getString(11));
             }
 
@@ -192,7 +223,15 @@ public class MoviesService implements MoviesInterface {
             String sql="select *from `javacore`.`movies` where Cast LIKE '%"+cast+"%'";
             ResultSet resultSet=selectStmt.executeQuery(sql);
             while(resultSet.next()){
+                System.out.print("Phim:");
+                System.out.println(resultSet.getString(2));
+                System.out.print("Nội dung:");
                 System.out.println(resultSet.getString(12));
+                System.out.print("Diễn viên:");
+                System.out.println(resultSet.getString(8));
+                System.out.println("Số tập:");
+                System.out.println(resultSet.getString(7));
+                System.out.print("Link:");
                 System.out.println(resultSet.getString(11));
             }
 
